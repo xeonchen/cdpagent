@@ -7,6 +7,8 @@ import sys
 
 from downloader import TryBuildDownloader
 
+__all__ = ['download', 'install', 'update']
+
 INSTALLER_DIR =   'C:\\CDP\\installer'
 WPT_DRIVER_BASE = 'C:\\CDP\\etc\\wptdriver.ini'
 WPT_DRIVER_INI =  'C:\\webpagetest\\wptdriver.ini'
