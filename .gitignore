@@ -89,4 +89,10 @@ ENV/
 .ropeproject
 
 # localdb
-src/agent.dat
+bin/agent.dat
+
+# settings
+etc/wptdriver.ini
+
+# installed directories
+Try-*
