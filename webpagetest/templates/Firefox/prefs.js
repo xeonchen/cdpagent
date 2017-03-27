@@ -83,7 +83,7 @@ user_pref("javascript.options.showInConsole", true);
 user_pref("devtools.chrome.enabled", true);
 user_pref("devtools.debugger.remote-enabled", true);
 
-/* From Hasal */
+// From Hasal
 user_pref("plugin.state.flash", 0);
 user_pref("browser.sessionstore.restore_on_demand", false);
 // user_pref("browser.sessionstore.resume_from_crash", false);
@@ -106,3 +106,12 @@ user_pref("dom.disable_open_during_load", false);
 user_pref("general.useragent.locale", "en-US");
 user_pref("intl.accept_languages", "en-US, en");
 user_pref("gfx.downloadable_fonts.otl_validation", false);
+
+// Disable Safe-Browsing related prefs
+// user_pref("browser.safebrowsing.phishing.enabled", false);
+// user_pref("browser.safebrowsing.malware.enabled", false);
+user_pref("privacy.trackingprotection.enabled", false);
+user_pref("privacy.trackingprotection.pbmode.enabled", false);
+user_pref("browser.safebrowsing.blockedURIs.enabled", false);
+user_pref("privacy.trackingprotection.annotate_channels", false);
+user_pref("plugins.flashBlock.enabled", false);
