@@ -115,3 +115,6 @@ user_pref("privacy.trackingprotection.pbmode.enabled", false);
 user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("privacy.trackingprotection.annotate_channels", false);
 user_pref("plugins.flashBlock.enabled", false);
+
+// Disable captive portal detection.
+user_pref("network.captive-portal-service.enabled", false);
