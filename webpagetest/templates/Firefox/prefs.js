@@ -82,3 +82,27 @@ user_pref("signon.rememberSignons", false);
 user_pref("javascript.options.showInConsole", true);
 user_pref("devtools.chrome.enabled", true);
 user_pref("devtools.debugger.remote-enabled", true);
+
+/* From Hasal */
+user_pref("plugin.state.flash", 0);
+user_pref("browser.sessionstore.restore_on_demand", false);
+// user_pref("browser.sessionstore.resume_from_crash", false);
+// user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("app.update.auto", false);
+// user_pref("app.update.enabled", false);
+user_pref("app.update.silent", false);
+user_pref("browser.tabs.remote.autostart", false);
+user_pref("browser.tabs.remote.autostart.1", false);
+user_pref("browser.tabs.remote.autostart.2", true);
+user_pref("browser.tabs.remote.force-enable", true);
+// user_pref("browser.startup.homepage", "about,blank");
+// user_pref("browser.startup.page", 0);
+// user_pref("browser.tabs.warnOnClose", false);
+user_pref("javascript.options.asyncstack", false);
+user_pref("dom.disable_open_during_load", false);
+// user_pref("datareporting.healthreport.uploadEnabled", false);
+// user_pref("datareporting.healthreport.service.enabled", false);
+// user_pref("datareporting.healthreport.service.firstRun", false);
+user_pref("general.useragent.locale", "en-US");
+user_pref("intl.accept_languages", "en-US, en");
+user_pref("gfx.downloadable_fonts.otl_validation", false);
