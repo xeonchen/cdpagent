@@ -54,7 +54,7 @@ user_pref("extensions.shownSelectionUI", true);
 user_pref("extensions.autoDisableScopes", 14);
 user_pref("intl.charsetmenu.browser.cache", "UTF-8");
 user_pref("network.cookie.prefsMigrated", true);
-user_pref("network.proxy.type", 0);
+user_pref("network.proxy.type", 5);
 user_pref("pageThumbs.enabled", false);
 user_pref("pref.browser.homepage.disable_button.current_page", false);
 user_pref("privacy.cpd.siteSettings", true);
