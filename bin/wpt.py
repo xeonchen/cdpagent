@@ -33,7 +33,13 @@ def download(build_id):
 
   installer_path = '%s.%s' % (base, 'exe')
   if not os.path.exists(installer_path):
-    d = TryBuildDownloader(PLATFORM, build_id)
+    try:
+        d = TryBuildDownloader(PLATFORM, build_id)
+    except:
+        import traceback
+        traceback.print_exc()
+        return False
+
     if d.fetch() and d.check():
         d.save(installer_path)
         print 'success'
