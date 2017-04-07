@@ -46,8 +46,8 @@ def main():
   for b in agent.get_builds():
     build_id = b['id']
     if download(build_id) and install(build_id):
-      update()
       agent.update_timestamp(b['created_at'])
+  update()
 
 if __name__ == '__main__':
   main()
