@@ -9,13 +9,14 @@ from downloader import TryBuildDownloader
 
 __all__ = ['download', 'install', 'update']
 
-INSTALLER_DIR =   'C:\\CDP\\installer'
-WPT_DRIVER_BASE = 'C:\\CDP\\etc\\wptdriver.ini'
-WPT_DRIVER_INI =  'C:\\CDP\\webpagetest\\wptdriver.ini'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INSTALLER_DIR =   os.path.join(BASE_DIR, 'installer')
+WPT_DRIVER_BASE = os.path.join(BASE_DIR, 'etc', 'wptdriver.ini')
+WPT_DRIVER_INI =  os.path.join(BASE_DIR, 'webpagetest', 'wptdriver.ini')
 PLATFORM = 'win32'
 
 INSTALL_INI = '''[Install]
-InstallDirectoryPath=C:\\CDP\\Try-%(build_id)s\\
+InstallDirectoryPath=%(base_dir)s\\Try-%(build_id)s\\
 QuickLaunchShortcut=false
 DesktopShortcut=false
 StartMenuShortcuts=false
@@ -23,7 +24,7 @@ MaintenanceService=false
 '''
 
 WPT_INI = '''[Try-%(build_id_no_dot)s]
-exe="C:\\CDP\\Try-%(build_id)s\\firefox.exe"
+exe="%(base_dir)s\\Try-%(build_id)s\\firefox.exe"
 options='-profile "%%PROFILE%%" -no-remote'
 template=firefox
 '''
@@ -49,6 +50,7 @@ def download(build_id):
         return False
 
     config = {
+      'base_dir': BASE_DIR,
       'build_id': build_id,
       'build_id_no_dot': build_id.replace('.', '_')
     }
@@ -86,4 +88,4 @@ def main(arg):
     update()
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+  main(sys.argv[1])
