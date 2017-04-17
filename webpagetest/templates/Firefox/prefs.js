@@ -118,3 +118,6 @@ user_pref("plugins.flashBlock.enabled", false);
 
 // Disable captive portal detection.
 user_pref("network.captive-portal-service.enabled", false);
+
+// Disable checking unsubmitted crash report (inc. UI)
+user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
