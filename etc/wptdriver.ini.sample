@@ -6,6 +6,7 @@ Time Limit=120
 ;Automatically install and update support software (Flash, Silverlight, etc)
 software=http://www.webpagetest.org/installers/software.dat
 Keep Resolution=1
+;web_page_replay_host=0.0.0.0
 
 [Firefox-Nightly]
 exe="C:\Program Files (x86)\Nightly\firefox.exe"
