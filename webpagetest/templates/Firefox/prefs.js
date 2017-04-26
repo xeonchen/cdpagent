@@ -127,3 +127,6 @@ user_pref("extensions.allow-non-mpc-extensions", true);
 
 // load WPT add-on
 user_pref("extensions.legacy.enabled", true);
+
+// Trust System CA
+user_pref("security.enterprise_roots.enabled", true);
