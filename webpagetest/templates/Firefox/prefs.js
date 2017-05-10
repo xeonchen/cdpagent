@@ -121,3 +121,6 @@ user_pref("network.captive-portal-service.enabled", false);
 
 // Disable checking unsubmitted crash report (inc. UI)
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
+
+// Enable non-e10s extensions
+user_pref("extensions.allow-non-mpc-extensions", true);
