@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "QuantumNetworking",
+  "version": "0.1",
+
+  "applications": {
+    "gecko": {
+      "id": "webext@quantum.net"
+    }
+  },
+
+  "permissions": [
+    "activeTab",
+    "alarms",
+    "bookmarks",
+    "browsingData",
+    "contextMenus",
+    "contextualIdentities",
+    "cookies",
+    "downloads",
+    "downloads.open",
+    "geolocation",
+    "history",
+    "identity",
+    "idle",
+    "management",
+    "nativeMessaging",
+    "notifications",
+    "proxy",
+    "sessions",
+    "storage",
+    "tabs",
+    "topSites",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+
+  "background": {
+    "scripts": ["main.js"]
+  }
+}

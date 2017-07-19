@@ -130,3 +130,6 @@ user_pref("extensions.legacy.enabled", true);
 
 // Trust System CA
 user_pref("security.enterprise_roots.enabled", true);
+
+// Allow unsigned add-ons
+user_pref("xpinstall.signatures.required", false);
