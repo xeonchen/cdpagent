@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-from downloader import TryBuildDownloader
+from downloader import BuildDownloader, TryBuildDownloader
 
 __all__ = ['download', 'install', 'update']
 
@@ -29,13 +29,14 @@ options='-profile "%%PROFILE%%" -no-remote'
 template=firefox
 '''
 
-def download(build_id):
+def download(build_id, build_url=None):
   base = os.path.join(INSTALLER_DIR, 'try-%s' % build_id)
 
   installer_path = '%s.%s' % (base, 'exe')
+  print installer_path
   if not os.path.exists(installer_path):
     try:
-        d = TryBuildDownloader(PLATFORM, build_id)
+        d = TryBuildDownloader(PLATFORM, build_id) if build_url is None else BuildDownloader(build_url)
     except:
         import traceback
         traceback.print_exc()
@@ -81,11 +82,12 @@ def update():
     for c in read_ini_content():
       f.write(c + '\r\n')
 
-def main(arg):
-  build_id = arg
+def main(args):
+  build_id = args[0]
+  build_url = args[1] if len(args) > 1 else None
 
-  if download(build_id) and install(build_id):
-    update()
+  print 'download: %s %s' % (build_id, build_url)
+  download(build_id, build_url)
 
 if __name__ == '__main__':
-  main(sys.argv[1])
+  main(sys.argv[1:])

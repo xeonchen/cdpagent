@@ -8,7 +8,7 @@ import urllib
 
 from wpt import *
 
-AGENT_SERVER = 'http://moz.xeon.tw:3000/api/builds'
+AGENT_SERVER = 'http://presto.xeon.tw/api/builds'
 
 class Config(object):
   def __init__(self, path):
@@ -45,7 +45,8 @@ def main():
 
   for b in agent.get_builds():
     build_id = b['id']
-    if download(build_id) and install(build_id):
+    build_url = b.get('url')
+    if download(build_id, build_url) and install(build_id):
       agent.update_timestamp(b['created_at'])
   update()
 

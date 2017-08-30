@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
+import gzip
 import hashlib
 import json
 import os
@@ -11,11 +12,59 @@ import sys
 import tempfile
 import urllib2
 
-class EnvBoostrapper(object):
-    def __init__(self):
-        super(EnvBoostrapper, self).__init__()
+from StringIO import StringIO
 
-class TryBuildDownloader(object):
+class BuildDownloader(object):
+    def __init__(self, url):
+        super(BuildDownloader, self).__init__()
+        self.url = url
+
+    def __del__(self):
+        self.reset()
+
+    def requestDownload(self, url):
+        request = urllib2.Request(self.url)
+        request.add_header('Accept-encoding', 'gzip')
+        response = urllib2.urlopen(request)
+
+        if response.info().get('Content-Encoding') == 'gzip':
+            buf = StringIO(response.read())
+            return gzip.GzipFile(fileobj=buf)
+
+        return response
+
+    def fetch(self):
+        req = self.requestDownload(self.url)
+
+        fd, path = tempfile.mkstemp(prefix='moz')
+        filesize = 0
+
+        with os.fdopen(fd, 'w', 65536) as f:
+            while True:
+                buf = req.read(65536)
+                if not buf: break;
+
+                filesize += len(buf)
+
+                f.write(buf)
+                print 'downloading: %d bytes\r' % filesize,
+        print ''
+
+        self.path = path
+        self.filesize = filesize
+        return True
+
+    def check(self):
+        return True
+
+    def save(self, path):
+        shutil.move(self.path, path)
+
+    def reset(self):
+        if os.path.exists(self.path):
+            os.remove(self.path)
+
+class TryBuildDownloader(BuildDownloader):
     CONFIG = {
         'protocol': 'https',
         'host': 'archive.mozilla.org',
@@ -23,7 +72,7 @@ class TryBuildDownloader(object):
     }
 
     def __init__(self, platform, build_id):
-        super(TryBuildDownloader, self).__init__()
+        super(TryBuildDownloader, self).__init__('')
 
         self.config = self.CONFIG.copy()
 
@@ -73,8 +122,8 @@ class TryBuildDownloader(object):
     def fetch(self):
         self._prepare_checksums()
 
-        url = '%(protocol)s://%(host)s%(path)s/%(installer)s' % (self.config)
-        req = urllib2.urlopen(url)
+        self.url = '%(protocol)s://%(host)s%(path)s/%(installer)s' % (self.config)
+        req = self.requestDownload(self.url)
 
         fd, path = tempfile.mkstemp(prefix='moz')
         filesize = 0
@@ -111,12 +160,10 @@ class TryBuildDownloader(object):
         return True
 
     def save(self, path):
-        shutil.move(self.path, path)
+        super(TryBuildDownloader, self).save(path)
+
         base, ext = os.path.splitext(path)
         with open(base + '.checksum', 'w') as f:
             json.dump(self.digests, f, indent=2)
             f.write('\n')
 
-    def reset(self):
-        if os.path.exists(self.path):
-            os.remove(self.path)
