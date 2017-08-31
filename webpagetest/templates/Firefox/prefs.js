@@ -124,3 +124,6 @@ user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
 
 // Enable non-e10s extensions
 user_pref("extensions.allow-non-mpc-extensions", true);
+
+// load WPT add-on
+user_pref("extensions.legacy.enabled", true);
